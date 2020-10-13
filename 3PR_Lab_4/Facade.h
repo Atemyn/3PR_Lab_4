@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+using namespace std;
+
 class Facade
 {
 private:
@@ -9,6 +12,16 @@ public:
 	{
 		this->windowsAmount = windowsAmount;
 		this->openedWindowsAmount = openedWindowsAmount;
+	}
+
+	int getWindowsAmount()
+	{
+		return windowsAmount;
+	}
+
+	int getOpenedWindowsAmount()
+	{
+		return openedWindowsAmount;
 	}
 
 	void getFacade()

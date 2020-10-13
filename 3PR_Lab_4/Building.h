@@ -113,7 +113,9 @@ public:
 		cout << "Совмещаем два здания... Их свойства такие:" << endl;
 		cout << "Длины сторон оснований: " << sideLength << " и " << build.sideLength << endl <<
 			"Высоты фундаментов: " << basementHeight << " и " << build.basementHeight << endl << "Высоты этажей: " << floorHeight << " и " << build.floorHeight << endl <<
-			"Количества этажей: " << floorAmount << " и " << build.floorAmount << endl << "Коэффициенты устойчивости: " << stabilityFactor << " и " << build.stabilityFactor << endl << endl;
+			"Количества этажей: " << floorAmount << " и " << build.floorAmount << endl << "Коэффициенты устойчивости: " << stabilityFactor << " и " << build.stabilityFactor << endl << 
+			"Общие количества окон: " << facade.getWindowsAmount() << " и " << build.facade.getWindowsAmount() << endl <<
+			"Количества открытых окон: " << facade.getOpenedWindowsAmount() << " и " << build.facade.getOpenedWindowsAmount() << endl << endl;
 
 		if (sideLength < build.sideLength)
 			sideLength = build.sideLength;
@@ -165,9 +167,9 @@ public:
 		else
 		{
 			cout << "Отлично! Здание получилось устойчивым с коэффициентом устойчивости k = " << stabilityFactor << endl << endl;
+			// Отображение информации о здании.
+			getBuilding();
 		}
-		// Отображение информации о здании.
-		getBuilding();
 	}
 
 	/* Функция по удалению floorsToRemove этажей у экземпляра класса Building. */
@@ -193,11 +195,13 @@ public:
 	void openWindowsOnFacade()
 	{
 		facade.openWindows();
+		getBuilding();
 	}
 
 	void closeWindowsOnFacade()
 	{
 		facade.closeWindows();
+		getBuilding();
 	}
 
 };
