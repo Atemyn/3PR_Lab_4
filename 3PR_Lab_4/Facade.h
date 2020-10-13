@@ -4,17 +4,17 @@ class Facade
 private:
 	int windowsAmount;
 	int openedWindowsAmount;
-
+public:
 	void setFacade(int windowsAmount, int openedWindowsAmount)
 	{
 		this->windowsAmount = windowsAmount;
 		this->openedWindowsAmount = openedWindowsAmount;
 	}
-public:
+
 	void getFacade()
 	{
 		cout << "Общее количество окон: " << windowsAmount << endl;
-		cout << "Количество открытых окон: " << openedWindowsAmount << endl << endl;
+		cout << "Количество открытых окон: " << openedWindowsAmount << endl;
 	}
 
 	void inputFacade()
@@ -64,6 +64,10 @@ public:
 		openedWindowsAmount -= windowsToClose;
 	}
 
-
+	void addToFacade(Facade facadeToAdd)
+	{
+		windowsAmount += facadeToAdd.windowsAmount;
+		openedWindowsAmount += facadeToAdd.openedWindowsAmount;
+	}
 };
 

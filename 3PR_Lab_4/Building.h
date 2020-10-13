@@ -18,6 +18,8 @@ private:
 	float floorHeight;
 	// Количество этажей.
 	int floorAmount;
+	// Объект класса фасада здания, содержащий информацию об окнах здания.
+	Facade facade;
 	// Коэффициент устойчивости.
 	float stabilityFactor;
 	/* Функция по установке переданных значений в свойства экземпляра класса Building. */
@@ -38,12 +40,14 @@ public:
 		cout << "Высота фундамента: " << basementHeight << endl;
 		cout << "Высота этажа: " << floorHeight << endl;
 		cout << "Количество этажей: " << floorAmount << endl;
+		facade.getFacade();
 		cout << "Коэффициент устойчивости: " << stabilityFactor << endl << endl;
 	}
 	/* Функция по заданию свойств по умолчанию экземпляра класса Building. */
 	void initBuilding()
 	{
 		setBuiling(1.0, 1.0, 1.0, 1, 1.0);
+		facade.setFacade(0, 0);
 	}
 	/* Функция по вводу с клавиатуры свойств для экземпляра класса Building */
 	void inputBuilding()
@@ -80,6 +84,7 @@ public:
 			cin.clear();
 			rewind(stdin);
 		}
+		facade.inputFacade();
 		// Расчет коэффицента устойчивости.
 		stabilityFactor = (float)(sideLength * sideLength * sqrt(basementHeight)) / (floorHeight * floorAmount);
 		// Если коэффициент устойчивости меньше 1 - здание упадет; необхлдим повторный ввод характеристик
@@ -120,6 +125,8 @@ public:
 			floorHeight = build.floorHeight;
 
 		floorAmount = floorAmount + build.floorAmount;
+
+		facade.addToFacade(build.facade);
 		// Расчет нового коэффициента устойчивости и проверка его корректности.
 		stabilityFactor = (float)(sideLength * sideLength * sqrt(basementHeight)) / (floorHeight * floorAmount);
 		if (stabilityFactor < 1)
@@ -181,6 +188,16 @@ public:
 		cout << "Этажи успешно удалены!" << endl;
 		// Отображение информации о здании.
 		getBuilding();
+	}
+
+	void openWindowsOnFacade()
+	{
+		facade.openWindows();
+	}
+
+	void closeWindowsOnFacade()
+	{
+		facade.closeWindows();
 	}
 
 };
